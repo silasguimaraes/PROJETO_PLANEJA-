@@ -1,0 +1,390 @@
+/*
+   BASE
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+
+body {
+  background: #f4f4f4;
+}
+
+/*
+   LOGIN / CADASTRO
+*/
+
+.auth-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2563eb;
+}
+
+.auth-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 320px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  border: 2px solid white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.auth-card input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* 
+   BOTÕES
+ */
+
+button {
+  padding: 10px;
+  background: #2563eb;
+  color: white;
+  border: 1px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.link-btn {
+  background: transparent;
+  border: none;
+  color: #666;
+}
+
+.link-btn:hover {
+  color: #2563eb;
+}
+
+/*
+   HEADER
+*/
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: white;
+}
+
+/*
+   DASHBOARD
+*/
+
+#dashboard {
+  padding: 20px;
+}
+
+.dashboard-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+.card {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card.receitas {
+  border: 2px solid #22c55e;
+}
+
+.card.receitas p {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+.card.despesas {
+  border: 2px solid #ef4444;
+}
+
+.card.despesas p {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/*
+   GRÁFICOS
+*/
+
+.charts {
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.charts canvas {
+  width: 300px !important;
+  height: 220px !important;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+/*
+   TRANSAÇÕES
+*/
+
+#transacoes {
+  padding: 20px;
+}
+
+.lista {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item {
+  background: white;
+  padding: 14px;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 1px solid #ddd;
+
+  transition: 0.2s;
+}
+
+.item:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.item.receita {
+  border-left: 6px solid #22c55e;
+}
+
+.item.despesa {
+  border-left: 6px solid #ef4444;
+}
+
+/*
+   ASSINATURA
+*/
+
+#assinatura {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+#assinatura h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-bottom: 40px;
+}
+
+.planos {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.plano {
+  background: white;
+  width: 280px;
+  padding: 30px;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.plano.destaque {
+  border: 2px solid #2563eb;
+  transform: scale(1.05);
+  position: relative;
+}
+
+.plano.destaque::before {
+  content: "MAIS POPULAR";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: #2563eb;
+  color: white;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+.plano-info {
+  margin-top: 15px;
+  padding: 10px;
+  text-align: center;
+  font-weight: 600;
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.plano-info:hover {
+  background: #2563eb;
+  color: white;
+}
+
+/*
+   PAGAMENTO
+*/
+
+#pagamento {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.pagamento-box {
+  background: white;
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  border: 2px solid #2563eb;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/*
+   MODAIS (PARTE CORRIGIDA)
+*/
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+.modal:not(.hidden) {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  width: 320px;
+  padding: 25px;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  border: 2px solid #2563eb;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* 
+   PIX
+*/
+
+.pix-subtitle {
+  text-align: center;
+  color: #666;
+}
+
+.pix-info {
+  text-align: center;
+  color: #16a34a;
+}
+
+.qr-box {
+  width: 200px;
+  height: 200px;
+  margin: 10px auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  border: 2px dashed #2563eb;
+
+  background: #f9fafb;
+  color: #2563eb;
+}
+
+/* 
+   FOOTER
+*/
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-content {
+  background: white;
+  width: 90%;
+  max-width: 900px;
+
+  border-radius: 20px 20px 0 0;
+  padding: 12px 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+}
+
+/*
+   UTIL
+ */
+
+.hidden {
+  display: none;
+}

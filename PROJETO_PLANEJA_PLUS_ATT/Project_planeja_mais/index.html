@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Planeja+</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<section id="loginPage" class="auth-page">
+  <div class="auth-card">
+    <h1>Planeja+</h1>
+
+    <input id="loginEmail" type="email" placeholder="E-mail">
+    <input id="loginSenha" type="password" placeholder="Senha">
+
+    <button onclick="login()">Entrar</button>
+    <button class="link-btn" onclick="showCadastro()">Criar conta</button>
+  </div>
+</section>
+
+<!-- CADASTRO -->
+<section id="cadastroPage" class="auth-page hidden">
+  <div class="auth-card">
+    <h1>Cadastro</h1>
+
+    <input id="cadEmail" type="email" placeholder="E-mail">
+    <input id="cadSenha" type="password" placeholder="Senha">
+
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button class="link-btn" onclick="showLogin()">Já tenho conta</button>
+  </div>
+</section>
+
+<!-- APP -->
+<section id="appPage" class="hidden">
+
+<header class="header">
+  <h2>Planeja+</h2>
+
+  <nav>
+    <button onclick="showPage('dashboard')">Dashboard</button>
+    <button onclick="openModal()">Nova Transação</button>
+    <button onclick="showPage('transacoes')">Transações</button>
+    <button onclick="showPage('assinatura')">Assinatura</button>
+    <button onclick="logout()">Sair</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page">
+  <h1 class="dashboard-title">Dashboard</h1>
+
+  <div class="cards">
+    <div class="card receitas">
+      <h3>Receitas</h3>
+      <p id="receitas">R$ 0</p>
+    </div>
+
+    <div class="card despesas">
+      <h3>Despesas</h3>
+      <p id="despesas">R$ 0</p>
+    </div>
+
+    <div class="card">
+      <h3>Saldo</h3>
+      <p id="saldo">R$ 0</p>
+    </div>
+  </div>
+
+  <div class="charts hidden">
+    <canvas id="chartPie"></canvas>
+    <canvas id="chartLine"></canvas>
+  </div>
+</section>
+
+<!-- TRANSAÇÕES -->
+<section id="transacoes" class="page hidden">
+  <div id="listaTransacoes" class="lista"></div>
+</section>
+<!--ASSINATURA-->
+<section id="assinatura" class="page hidden">
+
+  <h2>Plano Premium</h2>
+
+  <p class="subtitle">
+    Desbloqueie recursos avançados e tenha controle total das suas finanças
+  </p>
+
+  <div class="planos">
+
+    <!-- GRATUITO -->
+    <div class="plano">
+      <h3>Gratuito</h3>
+      <p class="price">R$ 0</p>
+
+      <ul>
+        <li>✔ Até 10 transações por mês</li>
+        <li>✔ Controle básico de gastos</li>
+        <li>✔ Visualização simples</li>
+      </ul>
+
+      <p class="plano-status">Plano atual</p>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="plano destaque">
+      <h3>Premium</h3>
+      <p class="price">R$ 29,90/mês</p>
+
+      <ul>
+        <li>✔ Transações ilimitadas</li>
+        <li>✔ Gráficos avançados e detalhados</li>
+        <li>✔ Relatórios automáticos mensais</li>
+        <li>✔ Exportação de dados (PDF/Excel)</li>
+        <li>✔ Controle inteligente por categorias</li>
+      </ul>
+
+      <p class="plano-info" onclick="showPage('pagamento')">Assine já</p>
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<!-- MODAL NOVA TRANSAÇÃO -->
+<div id="modal" class="modal hidden">
+
+  <div class="modal-content">
+
+    <h3>Nova transação</h3>
+
+    <select id="tipo">
+      <option value="receita">Receita</option>
+      <option value="despesa">Despesa</option>
+    </select>
+
+    <input id="valor" type="number" placeholder="Valor">
+    <input id="categoria" type="text" placeholder="Categoria">
+
+    <button onclick="addTransacao()">Salvar</button>
+    <button onclick="closeModal()">Fechar</button>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>© 2026 Planeja+</p>
+
+    <div class="footer-links">
+      <button onclick="openFAQ()">FAQ</button>
+      <button onclick="avaliar()">Avaliar</button>
+    </div>
+  </div>
+</footer>
+
+</section>
+<!-- PAGAMENTO  -->
+<section id="pagamento" class="page hidden">
+
+  <h2>Pagamento Premium</h2>
+
+  <p class="subtitle">
+    Escolha sua forma de pagamento
+  </p>
+
+  <div class="pagamento-box">
+
+    <button onclick="openPix()">Pix</button>
+    <button onclick="openCartao()">Cartão de Débito</button>
+
+  </div>
+  <!-- MODAL PIX -->
+<div id="modalPix" class="modal hidden">
+  <div class="modal-content">
+
+    <h3>Pagamento via Pix</h3>
+
+    <div class="qr-box">
+      QR CODE
+    </div>
+
+    <button onclick="closePix()">Fechar</button>
+
+  </div>
+</div>
+
+<!-- MODAL DO CARTÃO -->
+<div id="modalCartao" class="modal hidden">
+  <div class="modal-content">
+
+    <h3>Cartão de Débito</h3>
+
+    <input type="text" placeholder="Número do cartão">
+    <input type="text" placeholder="Nome no cartão">
+    <input type="text" placeholder="Validade (MM/AA)">
+    <input type="text" placeholder="CVV">
+
+    <button onclick="pagarCartao()">Confirmar pagamento</button>
+    <button onclick="closeCartao()">Cancelar</button>
+
+  </div>
+</div>
+<!-- MODAL PIX -->
+<div id="modalPix" class="modal hidden">
+
+  <div class="modal-content">
+
+    <h3>Pagamento via Pix</h3>
+
+    <p class="pix-subtitle">
+      Escaneie o QR Code abaixo
+    </p>
+
+    <div class="qr-box">
+      QR CODE
+    </div>
+
+    <p class="pix-info">
+      Após o pagamento, a liberação é imediata
+    </p>
+
+    <button onclick="closePix()">Fechar</button>
+
+  </div>
+
+</div>
+
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
